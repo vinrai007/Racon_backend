@@ -8,7 +8,8 @@ import ImageKit from "imagekit";
 import mongoose from "mongoose";
 import Chat from "./models/chat.js";
 import UserChats from "./models/userChats.js";
-import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
+// import { ClerkExpressRequireAuth } from "@clerk/clerk-sdk-node";
+import { ClerkExpressRequireAuth, ClerkExpressWithAuth } from "@clerk/clerk-sdk-node";
 
 import dotenv from 'dotenv';
 dotenv.config();
@@ -22,7 +23,8 @@ const __dirname = path.dirname(__filename);
 
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+     origin: "https://racon.onrender.com",
+    // origin: process.env.CLIENT_URL,
     credentials: true,
   })
 );
@@ -162,11 +164,11 @@ app.use((err, req, res, next) => {
 });
 
 // PRODUCTION
-app.use(express.static(path.join(__dirname, "../client/dist")));
+// app.use(express.static(path.join(__dirname, "../client/dist")));
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "../client/dist", "index.html"));
+// });
 
 app.listen(port, () => {
   connect();
